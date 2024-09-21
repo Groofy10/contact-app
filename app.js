@@ -1,8 +1,3 @@
-app.use((req, res, next) => {
-  console.log(`Request URL: ${req.url}`);
-  next();
-});
-
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
@@ -34,6 +29,10 @@ app.use(
 );
 app.use(flash());
 
+app.use((req, res, next) => {
+  console.log(`Request Method: ${req.method}, Request URL: ${req.url}`);
+  next();
+});
 app.get("/", (req, res) => {
   res.render("home", {
     layout: "layouts/main",
