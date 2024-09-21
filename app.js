@@ -56,7 +56,7 @@ app.get("/contact", async (req, res) => {
 
   try {
     console.log("Fetching contacts from the database...");
-    const contacts = await contact.find(); // Ambil dari database
+    const contacts = await contact.find().limit(100); // Ambil dari database
     const duration = Date.now() - startTime; // Hitung waktu
 
     console.log(`Fetched ${contacts.length} contacts in ${duration}ms`);
