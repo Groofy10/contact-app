@@ -1,3 +1,8 @@
+app.use((req, res, next) => {
+  console.log(`Request URL: ${req.url}`);
+  next();
+});
+
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const session = require("express-session");
