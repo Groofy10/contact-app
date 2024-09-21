@@ -73,6 +73,16 @@ app.get("/contact", async (req, res) => {
   }
 });
 
+app.get("/check-connection", async (req, res) => {
+  try {
+    await mongoose.connection.db.command({ ping: 1 }); // Memeriksa koneksi dengan ping
+    res.status(200).send("MongoDB connection is successful!");
+  } catch (error) {
+    console.error("Connection Failed:", error);
+    res.status(500).send("MongoDB connection failed!");
+  }
+});
+
 app.get("/contact/add", (req, res) => {
   res.render("new-contact", {
     layout: "layouts/main",
