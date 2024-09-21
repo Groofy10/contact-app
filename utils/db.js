@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/contactapp");
+mongoose.connect(
+  "mongodb+srv://ferdyjonathan12:testdatabase@cluster0.ebibr.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+);
 // const contact1 = new contact({
 //     name: "Ferdy",
 //     number: "085711916591",
