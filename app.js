@@ -5,6 +5,7 @@ const ckParser = require("cookie-parser");
 const flash = require("connect-flash");
 const { body, validationResult, check } = require("express-validator");
 const methodOverride = require("method-override");
+const path = require("path");
 
 require("./utils/db");
 const contact = require("./model/contact");
@@ -13,6 +14,7 @@ const app = express();
 const port = 3000;
 
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 app.use(expressLayouts);
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
