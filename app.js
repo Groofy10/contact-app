@@ -52,13 +52,25 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/contact", async (req, res) => {
-  const contacts = await contact.find();
-  res.render("contact", {
-    layout: "layouts/main",
-    title: "Contact",
-    contacts,
-    msg: req.flash("msg"),
-  });
+  const startTime = Date.now(); // Mulai timer
+
+  try {
+    console.log("Fetching contacts from the database...");
+    const contacts = await contact.find(); // Ambil dari database
+    const duration = Date.now() - startTime; // Hitung waktu
+
+    console.log(`Fetched ${contacts.length} contacts in ${duration}ms`);
+
+    res.render("contact", {
+      layout: "layouts/main",
+      title: "Contact",
+      contacts,
+      msg: req.flash("msg"),
+    });
+  } catch (error) {
+    console.error("Error fetching contacts:", error);
+    res.status(500).send("Internal Server Error");
+  }
 });
 
 app.get("/contact/add", (req, res) => {
